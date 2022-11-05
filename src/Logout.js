@@ -1,8 +1,34 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import axios from 'axios'
 const Logout = () => {
+    useEffect(()=>{
+        if(window.localStorage.getItem('token')===null)
+        window.location.replace('http://localhost:3000/Login')
+    },[])
+    const handleclick=()=>{
+        axios.post('/user', {
+            headers:{
+                'Content-Type': 'application/json',
+        Authorization: `Token ${localStorage.getItem('token')}`
+            }
+          })
+          .then(function (response) {
+            console.log(response);
+            window.localStorage.clear()
+            window.location.replace('http://localhost:3000/Login')
+            
+          })
+          .catch(function (error) {
+            console.log(error);
+          
+          });
+    }
+    
   return (
-    <div>Logout</div>
+    <div>
+        <p>Are you sure you want to Logout</p>
+        <button onClick={handleclick}>Logout</button>
+    </div>
   )
 }
 
