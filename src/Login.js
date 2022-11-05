@@ -28,9 +28,9 @@ const Login = () => {
   return (
     <div onSubmit={handlesubmit}>
         {errmsg && <p>{errmsg}</p>}
-        <input type={'email'} onChange={(e)=>setusername(e.target.value)}></input>
+        <input type={'email'} onChange={(e)=>setusername(e.target.value)} required></input>
         <br></br>
-        <input type={'password'} onChange={(e)=>setpassword(e.target.value)}></input><br></br>
+        <input type={'password'} onChange={(e)=>setpassword(e.target.value)} required></input><br></br>
         <button>Login</button>
     </div>
   )
