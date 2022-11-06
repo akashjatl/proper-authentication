@@ -9,7 +9,7 @@ const Logout = () => {
       await  axios.post('/user', {
             headers:{
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': localStorage.getItem('token')
+                'X-CSRFTOKEN': localStorage.getItem('token')
        // Authorization: `token ${localStorage.getItem('token')}`
             }
           })
