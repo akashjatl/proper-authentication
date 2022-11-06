@@ -10,8 +10,8 @@ const Signup = () => {
     const[img,setimg]=useState('')
     const errref=useRef(0)
     const start=useRef()
-    function post(){
-        axios.post('/user', {
+   async function post(){
+       await axios.post('/user', {
            firstname:{firstname},
            lastname:{lastname},
            username:{email},

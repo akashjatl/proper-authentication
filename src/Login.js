@@ -5,9 +5,9 @@ const Login = () => {
     const [username,setusername]=useState('')
     const [password,setpassword]=useState('')
     const [errmsg,seterrormsg]=useState('')
-    const handlesubmit =(e)=>{
+    const handlesubmit = async(e)=>{
         e.preventDefault()
-         axios.post('/user', {
+        await axios.post('/user', {
             username: {username},
             password: {password}
           })

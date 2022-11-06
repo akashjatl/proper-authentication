@@ -5,8 +5,8 @@ const Logout = () => {
         if(window.localStorage.getItem('token')===null)
         window.location.replace('http://localhost:3000/Login')
     },[])
-    const handleclick=()=>{
-        axios.post('/user', {
+    const handleclick=async()=>{
+      await  axios.post('/user', {
             headers:{
                 'Content-Type': 'application/json',
         Authorization: `Token ${localStorage.getItem('token')}`
