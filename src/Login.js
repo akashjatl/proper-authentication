@@ -15,6 +15,7 @@ const Login = () => {
             console.log(response);
             window.localStorage.clear()
             window.localStorage.setItem('token',response.data)
+            window.location.replace('http://localhost:3000/Dashboard')
           })
           .catch(function (error) {
             console.log(error);
