@@ -19,7 +19,8 @@ const Signup = () => {
             img:{img},
             headers:{
               'Content-Type': 'application/json',
-      Authorization: `token ${localStorage.getItem('token')}`
+              'X-CSRF-TOKEN': localStorage.getItem('token')
+     // Authorization: `token ${localStorage.getItem('token')}`
           }
           })
           .then(function (response) {

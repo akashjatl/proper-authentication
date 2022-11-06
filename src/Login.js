@@ -12,7 +12,8 @@ const Login = () => {
             username: {username},
             password: {password}, headers:{
               'Content-Type': 'application/json',
-      Authorization: `token ${localStorage.getItem('token')}`
+              'X-CSRF-TOKEN': localStorage.getItem('token')
+     // Authorization: `token ${localStorage.getItem('token')}`
           }
             
           }
