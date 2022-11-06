@@ -8,9 +8,16 @@ const Login = () => {
     const handlesubmit = async(e)=>{
         e.preventDefault()
         await axios.post('/user', {
+
             username: {username},
-            password: {password}
-          })
+            password: {password}, headers:{
+              'Content-Type': 'application/json',
+      Authorization: `token ${localStorage.getItem('token')}`
+          }
+            
+          }
+         
+          )
           .then(function (response) {
             console.log(response);
             window.localStorage.clear()

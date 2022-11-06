@@ -16,7 +16,11 @@ const Signup = () => {
            lastname:{lastname},
            username:{email},
             password: {password},
-            img:{img}
+            img:{img},
+            headers:{
+              'Content-Type': 'application/json',
+      Authorization: `token ${localStorage.getItem('token')}`
+          }
           })
           .then(function (response) {
             console.log(response);

@@ -9,7 +9,7 @@ const Logout = () => {
       await  axios.post('/user', {
             headers:{
                 'Content-Type': 'application/json',
-        Authorization: `Token ${localStorage.getItem('token')}`
+        Authorization: `token ${localStorage.getItem('token')}`
             }
           })
           .then(function (response) {
