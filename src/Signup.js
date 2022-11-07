@@ -18,7 +18,7 @@ const Signup = () => {
       //  img:{img}
     }
    async function post(){
-    await fetch('http://127.0.0.1:8000/account/signup/', {
+    await fetch(`${process.env.REACT_APP_API_URL}signup/`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
