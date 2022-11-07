@@ -5,27 +5,23 @@ const Dashboard = () => {
   const [name,setname]=useState('')
   const [img,setimage]=useState('')
   useEffect(()=>{
-    if(window.localStorage.getItem('token')===null)
-    window.location.replace('http://localhost:3000/Login')
+    if(window.localStorage.getItem('token')===null){
+    window.location.replace('http://localhost:3000/Login')}
+     
+    (async()=>{
+      console.log('enetered')
+      const response = await fetch(
+        "http://127.0.0.1:8000/account/user/"
+      ).then((response) => response.json());
+      console.log(response.data)
+      setname(response.data.name)
+      
+    })()
   },[])
-   async function get(){
-    axios({
-      method: 'get',
-      url: 'http://bit.ly/2mTM3nY',
-      responseType: 'stream'
-      }
-    )
-      .then(function (response) {
-        setname(response.data.name)
-        setimage(response.data.image)
-
-       
-      });
-   }
   return (
     <div>
         Hi I am an Idiot{name}
-        <img src={img} alt=''/>
+        {/* <img src={img} alt=''/> */}
     </div>
   )
 }

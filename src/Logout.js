@@ -6,23 +6,22 @@ const Logout = () => {
         window.location.replace('http://localhost:3000/Login')
     },[])
     const handleclick=async()=>{
-      await  axios.post('/user', {
-            headers:{
-                'Content-Type': 'application/json',
-                'X-CSRFTOKEN': localStorage.getItem('token')
-       // Authorization: `token ${localStorage.getItem('token')}`
-            }
-          })
-          .then(function (response) {
-            console.log(response);
-            window.localStorage.clear()
-            window.location.replace('http://localhost:3000/Login')
-            
-          })
-          .catch(function (error) {
-            console.log(error);
-          
-          });
+    await  fetch('https://example.com/profile', {
+  method: 'POST', 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+    localStorage.clear()
+    window.location.replace('http://localhost:3000/Login')
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
     }
     
   return (

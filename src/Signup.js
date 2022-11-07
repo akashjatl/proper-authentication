@@ -10,34 +10,37 @@ const Signup = () => {
     const[img,setimg]=useState('')
     const errref=useRef(0)
     const start=useRef()
+    const user={
+      firstname:{firstname},
+      lastname:{lastname},
+      username:{email},
+       password: {password}
+      //  img:{img}
+    }
    async function post(){
-       await axios.post('/user', {
-           firstname:{firstname},
-           lastname:{lastname},
-           username:{email},
-            password: {password},
-            img:{img},
-            headers:{
-              'Content-Type': 'application/json',
-              'X-CSRFTOKEN': localStorage.getItem('token')
-     // Authorization: `token ${localStorage.getItem('token')}`
-          }
-          })
-          .then(function (response) {
-            console.log(response);
-            window.location.replace("http://localhost:3000/Login")
-          })
-          .catch(function (error) {
-            console.log(error);
-            seterrmsg('Login failed')
-          });
+    await fetch('http://127.0.0.1:8000/account/signup/', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+          window.location.replace('http://localhost:3000/Login')
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        seterrmsg('sign up failed')
+      });
+
     }
     const handleimage=(e)=>{
         setimg(URL.createObjectURL(e.target.files[0]));
     }
     const handlesubmit=(e)=>{
         e.preventDefault()
-        console.log('i am in');
         password!==reenterpassword ? (seterrmsg('both the password are different')):
         (
             post()
@@ -64,7 +67,7 @@ const Signup = () => {
         <input type={'password'}  onChange={(e)=>setpassword(e.target.value)} required></input>
         <label>Re-enter password</label>
         <input type={'password'}  onChange={(e)=>setreenter(e.target.value)} ref={errref} required></input>
-        <input type={'file'} img src={img} onChange={handleimage}></input>
+        {/* <input type={'file'} img src={img} onChange={handleimage}></input> */}
         <button>Signup</button>
         </form>
     </div>
