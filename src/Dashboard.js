@@ -24,7 +24,7 @@ const Dashboard = () => {
    }
   return (
     <div>
-        Hi {name}
+        Hi I am an Idiot{name}
         <img src={img} alt=''/>
     </div>
   )

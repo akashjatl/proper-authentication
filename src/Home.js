@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     const [authentication,setauthentication]=useState(false)
     useEffect(()=>{
+      localStorage.clear();
         if(window.localStorage.getItem('token')!==null)
         setauthentication(true)
     },[])
