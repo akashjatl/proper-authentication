@@ -52,12 +52,12 @@ const Login = () => {
   return (
     <form onSubmit={handlesubmit}>
       {errmsg && <p>{errmsg}</p>}
-      <input
+      <input value={username} type={'email'}
         onChange={(e) => setusername(e.target.value)}
         required
       ></input>
       <br></br>
-      <input
+      <input value={password} type={'password'}
         onChange={(e) => setpassword(e.target.value)}
         required
       ></input>
