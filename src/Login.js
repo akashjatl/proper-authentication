@@ -7,7 +7,7 @@ const Login = () => {
     const [errmsg,seterrormsg]=useState('')
     const handlesubmit = async(e)=>{
         e.preventDefault()
-        await axios.post('/user', {
+        await axios.post('http://127.0.0.1:8000/login/', {
 
             username: {username},
             password: {password}, headers:{
