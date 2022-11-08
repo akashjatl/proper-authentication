@@ -11,8 +11,8 @@ const Signup = () => {
     const errref=useRef(0)
     const start=useRef()
     const user={
-      firstname:{firstname},
-      lastname:{lastname},
+      // firstname:{firstname},
+      // lastname:{lastname},
       username:{email},
        password: {password}
       //  img:{img}
@@ -57,16 +57,16 @@ const Signup = () => {
     <div style={{display:"flex",flexDirection:"column",width:"10%",marginLeft:"10%"}} >
         <form onSubmit={handlesubmit}>
         {errmsg && <p>{errmsg}</p> }
-        <label>Firstname</label>
-        <input type={'text'} onChange={(e)=>setfisrtname(e.target.value)} ref={start} required></input>
+        {/* <label>Firstname</label>
+        <input type={'text'} onChange={(e)=>setfisrtname(e.target.value)} value={firstname} ref={start} required></input>
         <label>Last name</label>
-        <input type={'text'}  onChange={(e)=>setlastname(e.target.value)}></input>
-        <label>Email Address</label>
-        <input type={'email'}  onChange={(e)=>setemail(e.target.value)} required></input>
+        <input type={'text'}  onChange={(e)=>setlastname(e.target.value) value={lastname}}></input> */}
+        <label>Username</label>
+        <input type={'text'}  onChange={(e)=>setemail(e.target.value)} value={email} required></input>
         <label>Password</label>
-        <input type={'password'}  onChange={(e)=>setpassword(e.target.value)} required></input>
+        <input type={'password'}  onChange={(e)=>setpassword(e.target.value)} value={password} required></input>
         <label>Re-enter password</label>
-        <input type={'password'}  onChange={(e)=>setreenter(e.target.value)} ref={errref} required></input>
+        <input type={'password'}  onChange={(e)=>setreenter(e.target.value)} value={reenterpassword} ref={errref} required></input>
         {/* <input type={'file'} img src={img} onChange={handleimage}></input> */}
         <button>Signup</button>
         </form>
