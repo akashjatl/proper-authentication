@@ -1,6 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+function getCookie(name) {
+  let cookieValue = null;
+
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+
+        break;
+      }
+    }
+  }
+
+  return cookieValue;
+}
+
+const csrftoken = getCookie("csrftoken");
+
 const Dashboard = () => {
   const [name, setname] = useState("");
   const [img, setimage] = useState("");
@@ -11,15 +33,17 @@ const Dashboard = () => {
 
     (async () => {
       console.log("enetered");
+      console.log("token");
       const user = {
         access_token: localStorage.getItem("token"),
       };
       await fetch(`${process.env.REACT_APP_API_URL}user/`, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
+          "X-CSRFToken": csrftoken,
         },
-        body: JSON.stringify(user),
+        // body: JSON.stringify(user),
       })
         .then((res) => res.json)
         .then((data) => {
@@ -33,7 +57,7 @@ const Dashboard = () => {
   }, []);
   return (
     <div>
-      Hi I am an Idiot{name}
+      Hi I am an authentication system{name}
       {/* <img src={img} alt=''/> */}
     </div>
   );
