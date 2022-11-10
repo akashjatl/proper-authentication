@@ -3,7 +3,7 @@ import axios from 'axios'
 const Signup = () => {
     const[firstname,setfisrtname]=useState('')
     const[lastname,setlastname]=useState('')
-    const[email,setemail]=useState('')
+    const[username,setUsername]=useState('')
     const[password,setpassword]=useState('')
     const[reenterpassword,setreenter]=useState('')
     const[errmsg,seterrmsg]=useState('')
@@ -13,8 +13,10 @@ const Signup = () => {
     const user={
       // firstname:{firstname},
       // lastname:{lastname},
-      username:{email},
-       password: {password}
+      username:{username},
+      email:'',
+       password1: {password},
+       pasword2:{reenterpassword}
       //  img:{img}
     }
    async function post(){
@@ -57,12 +59,12 @@ const Signup = () => {
     <div style={{display:"flex",flexDirection:"column",width:"10%",marginLeft:"10%"}} >
         <form onSubmit={handlesubmit}>
         {errmsg && <p>{errmsg}</p> }
-        {/* <label>Firstname</label>
+        <label>Firstname</label>
         <input type={'text'} onChange={(e)=>setfisrtname(e.target.value)} value={firstname} ref={start} required></input>
         <label>Last name</label>
-        <input type={'text'}  onChange={(e)=>setlastname(e.target.value) value={lastname}}></input> */}
+        <input type={'text'}  onChange={(e)=>setlastname(e.target.value)} value={lastname}></input>
         <label>Username</label>
-        <input type={'text'}  onChange={(e)=>setemail(e.target.value)} value={email} required></input>
+        <input type={'text'}  onChange={(e)=>setUsername(e.target.value)} value={username} required></input>
         <label>Password</label>
         <input type={'password'}  onChange={(e)=>setpassword(e.target.value)} value={password} required></input>
         <label>Re-enter password</label>
