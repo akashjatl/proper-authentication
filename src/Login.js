@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 const Login = () => {
-  const [username, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [emailid, setEmail] = useState("");
   const [errmsg, setErrors] = useState("");
   const handlesubmit = async (e) => {
     e.preventDefault();
     const user = {
       username: username,
-      email: "",
+       email:emailid,
       password: password,
     };
 
@@ -31,7 +32,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        setEmail("");
+        setUsername("");
         setPassword("");
         if (error.response === 400) setErrors("incorrect username or password");
         else if (error.response.status === 404)
@@ -47,13 +48,23 @@ const Login = () => {
   return (
     <form onSubmit={handlesubmit}>
       {errmsg && <p>{errmsg}</p>}
+      <label>username</label>
       <input
         value={username}
+        type={"text"}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+      ></input>
+      <br></br>
+      <label>email</label>
+      <input
+        value={emailid}
         type={"text"}
         onChange={(e) => setEmail(e.target.value)}
         required
       ></input>
       <br></br>
+      <label>password</label>
       <input
         value={password}
         type={"password"}

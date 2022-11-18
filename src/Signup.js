@@ -4,6 +4,7 @@ const Signup = () => {
     const[firstname,setfisrtname]=useState('')
     const[lastname,setlastname]=useState('')
     const[username,setUsername]=useState('')
+    const[emailid,setEmail]=useState('')
     const[password,setpassword]=useState('')
     const[reenterpassword,setreenter]=useState('')
     const[errmsg,seterrmsg]=useState('')
@@ -11,16 +12,17 @@ const Signup = () => {
     const errref=useRef(0)
     const start=useRef()
     const user={
-      // firstname:{firstname},
-      // lastname:{lastname},
+       first_name:{firstname},
+       last_name:{lastname},
       username:{username},
-      email:'',
+       email:{emailid},
        password1: {password},
-       pasword2:{reenterpassword}
+       pasword2:{reenterpassword},
+      
       //  img:{img}
     }
    async function post(){
-    await fetch(`${process.env.REACT_APP_API_URL}signup/`, {
+    await fetch(`${process.env.REACT_APP_API_URL}registration/`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -30,10 +32,10 @@ const Signup = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-          window.location.replace('http://localhost:3000/Login')
+         // window.location.replace('http://localhost:3000/Login')
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.log( error);
         seterrmsg('sign up failed')
       });
 
@@ -43,6 +45,7 @@ const Signup = () => {
     }
     const handlesubmit=(e)=>{
         e.preventDefault()
+        console.log(firstname,lastname,password,reenterpassword,username,emailid)
         password!==reenterpassword ? (seterrmsg('both the password are different')):
         (
             post()
@@ -65,6 +68,8 @@ const Signup = () => {
         <input type={'text'}  onChange={(e)=>setlastname(e.target.value)} value={lastname}></input>
         <label>Username</label>
         <input type={'text'}  onChange={(e)=>setUsername(e.target.value)} value={username} required></input>
+        <label>email</label>
+        <input type={'text'}  onChange={(e)=>setEmail(e.target.value)} value={emailid} required></input>
         <label>Password</label>
         <input type={'password'}  onChange={(e)=>setpassword(e.target.value)} value={password} required></input>
         <label>Re-enter password</label>
