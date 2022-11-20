@@ -12,15 +12,17 @@ const Signup = () => {
     const errref=useRef(0)
     const start=useRef()
     const user={
-       first_name:{firstname},
-       last_name:{lastname},
-      username:{username},
-       email:{emailid},
-       password1: {password},
-       pasword2:{reenterpassword},
+      //  first_name:{firstname},
+      //  last_name:{lastname},
+      username:username,
+      email:emailid,
+      password1: password,
+      password2:reenterpassword
       
       //  img:{img}
     }
+
+    console.log(JSON.stringify(user));
    async function post(){
     await fetch(`${process.env.REACT_APP_API_URL}registration/`, {
       method: 'POST', 
@@ -54,18 +56,18 @@ const Signup = () => {
     useEffect(()=>{
         errref.current.focus()
     },[errmsg])
-    useEffect(()=>
-    {
-        start.current.focus()
-    },[])
+    // useEffect(()=>
+    // {
+    //     start.current.focus()
+    // },[])
   return (
     <div style={{display:"flex",flexDirection:"column",width:"10%",marginLeft:"10%"}} >
         <form onSubmit={handlesubmit}>
         {errmsg && <p>{errmsg}</p> }
-        <label>Firstname</label>
+        {/* <label>Firstname</label>
         <input type={'text'} onChange={(e)=>setfisrtname(e.target.value)} value={firstname} ref={start} required></input>
         <label>Last name</label>
-        <input type={'text'}  onChange={(e)=>setlastname(e.target.value)} value={lastname}></input>
+        <input type={'text'}  onChange={(e)=>setlastname(e.target.value)} value={lastname}></input> */}
         <label>Username</label>
         <input type={'text'}  onChange={(e)=>setUsername(e.target.value)} value={username} required></input>
         <label>email</label>
