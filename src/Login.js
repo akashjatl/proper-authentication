@@ -17,7 +17,7 @@ const Login = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'X-CSRFToken': localStorage.getItem('token')
+        // 'X-CSRFToken': localStorage.getItem('token')
       },
       body: JSON.stringify(user),
     })
