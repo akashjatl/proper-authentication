@@ -12,8 +12,7 @@ const Signup = () => {
     const errref=useRef(0)
     const start=useRef()
     const user={
-      //  first_name:{firstname},
-      //  last_name:{lastname},
+     
       username:username,
       email:emailid,
       password1: password,
@@ -24,7 +23,7 @@ const Signup = () => {
 
     console.log(JSON.stringify(user));
    async function post(){
-    await fetch(`${process.env.REACT_APP_API_URL}registration/`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/registration/`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +33,7 @@ const Signup = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-         // window.location.replace('http://localhost:3000/Login')
+          window.location.replace('http://localhost:3000/Login')
       })
       .catch((error) => {
         console.log( error);

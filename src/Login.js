@@ -1,26 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-function getCookie(name) {
-  let cookieValue = null;
-
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-
-        break;
-      }
-    }
-  }
-
-  return cookieValue;
-}
-const csrftoken = getCookie("csrftoken");
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -35,22 +15,20 @@ const Login = () => {
       password: password,
     };
 
-    await fetch(`${process.env.REACT_APP_API_URL}login/`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // 'X-CSRFToken': csrftoken,
-        // withCredentials: true
       },
       body: JSON.stringify(user),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        if (data.key) {
+        if (data.access_token) {
           console.log("Success:", data);
           localStorage.clear();
-          localStorage.setItem("token", data.key);
+          localStorage.setItem("token", data.access_token);
           window.location.replace('http://localhost:3000/Dashboard')
         }
       })
@@ -80,14 +58,14 @@ const Login = () => {
         required
       ></input>
       <br></br>
-      <label>email</label>
+      {/* <label>email</label>
       <input
         value={emailid}
         type={"text"}
         onChange={(e) => setEmail(e.target.value)}
         required
       ></input>
-      <br></br>
+      <br></br> */}
       <label>password</label>
       <input
         value={password}
